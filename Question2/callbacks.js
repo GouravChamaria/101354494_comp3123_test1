@@ -1,17 +1,22 @@
-const { resolvedPromise, rejectedPromise } = require("./callbacks.js");
+// callbacks.js
 
-resolvedPromise()
-  .then((result) => {
-    console.log("Resolved Promise Result:", result);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
+function resolvedPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Promise resolved successfully!");
+    }, 500);
   });
+}
 
-rejectedPromise()
-  .then((result) => {
-    console.log("Resolved Promise Result:", result);
-  })
-  .catch((error) => {
-    console.error("Rejected Promise Error:", error.message);
+function rejectedPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error("Promise rejected with an error."));
+    }, 500);
   });
+}
+
+module.exports = {
+  resolvedPromise,
+  rejectedPromise,
+};
